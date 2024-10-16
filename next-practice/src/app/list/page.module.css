@@ -1,0 +1,31 @@
+.bg {
+  justify-content: center;
+  padding: 15px 10px 15px 10px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.card {
+  border-radius: 1em;
+  width: 150px;
+  height: 200px;
+  overflow: hidden;
+  margin: 15px;
+  text-align: center;
+  color: black;
+}
+
+
+.card .top {
+  padding: 15px;
+  background-color: wheat;
+  width: 100%;
+  height: 50%;
+}
+
+.card .bottom {
+  padding: 15px;
+  background-color: rgb(227, 222, 231);
+  width: 100%;
+  height: 50%;
+}

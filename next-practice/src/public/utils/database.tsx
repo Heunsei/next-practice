@@ -1,5 +1,15 @@
 import { createPool } from "mysql2";
 
+const registerService = (name, initFn) => {
+  if (process.env.NODE_ENV === "development") {
+    if (!(name in global)) {
+      global[name] = initFn();
+    }
+    return global[name];
+  }
+  return initFn();
+};
+
 const connection = createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -9,11 +19,18 @@ const connection = createPool({
   port: 3306,
 });
 
-connection.getConnection((err, conn) => {
-  if (err) console.log("Error");
-  else console.log("Connected");
-  conn.release();
-});
+let db;
+try {
+  db = registerService("db", () => {
+    connection.getConnection((err, conn) => {
+      if (err) console.log("Error");
+      else console.log("Connected");
+      conn.release();
+    });
+  });
+} catch (err) {
+  console.error(err);
+}
 
 const executeQuery = (query: string, arrParams?: any[]) => {
   return new Promise((resolve, reject) => {
@@ -23,8 +40,8 @@ const executeQuery = (query: string, arrParams?: any[]) => {
           console.log("Error in executing the query");
           reject(err);
         }
-        console.log("------db.jsx------");
-        console.log(data)
+        // console.log("------db.jsx------");
+        // console.log(data)
         resolve(data);
       });
     } catch (err) {
