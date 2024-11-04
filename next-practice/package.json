@@ -9,18 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.7.2",
+    "@auth/typeorm-adapter": "^2.7.2",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.36.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.3",
     "next": "14.2.15",
+    "next-auth": "^4.24.10",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "typeorm": "^0.3.20",
+    "typeorm-naming-strategies": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^20.16.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "drizzle-kit": "^0.27.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "prisma": "^5.21.1",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
