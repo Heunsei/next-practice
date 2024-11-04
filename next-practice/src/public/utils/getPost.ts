@@ -1,5 +1,11 @@
 import { createPool } from "mysql2";
 
+interface post {
+  id: number;
+  content: string;
+  title: string;
+}
+
 const registerService = (name: string, initFn: () => void) => {
   if (process.env.NODE_ENV === "development") {
     if (!(name in global)) {
@@ -32,7 +38,7 @@ try {
   console.error(err);
 }
 
-const executeQuery = (query: string, arrParams?: any[]) => {
+const getPost = (query: string, arrParams?: any[]) => {
   return new Promise((resolve, reject) => {
     try {
       connection.query(query, arrParams, (err, data) => {
@@ -40,8 +46,6 @@ const executeQuery = (query: string, arrParams?: any[]) => {
           console.log("Error in executing the query");
           reject(err);
         }
-        // console.log("------db.jsx------");
-        // console.log(data)
         resolve(data);
       });
     } catch (err) {
@@ -50,4 +54,4 @@ const executeQuery = (query: string, arrParams?: any[]) => {
   });
 };
 
-export default executeQuery;
+export default getPost;

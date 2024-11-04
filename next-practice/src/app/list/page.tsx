@@ -1,6 +1,9 @@
-import Link from "next/link";
 import styles from "./page.module.css";
-import executeQuery from "@/public/utils/database";
+import ListItem from "./ListItem";
+import getPost from "@/public/utils/getPost";
+import { getServerSession } from "next-auth";
+
+export const dynamic = "force-dynamic";
 
 interface post {
   id: number;
@@ -10,22 +13,10 @@ interface post {
 
 export default async function List() {
   const query: string = "SELECT * FROM post";
-  const data: post[] = await executeQuery(query);
+  const data = (await getPost(query)) as post[];
   return (
     <div className={styles.bg}>
-      {data.map((e, i) => {
-        console.log(e);
-        return (
-          <div className={styles.card} key={i}>
-            <div className={styles.top}>
-              <Link href={`/detail/${e.id}`}>{e.title}</Link>
-            </div>
-            <div className={styles.bottom}>
-              <p>{e.content}</p>
-            </div>
-          </div>
-        );
-      })}
+      <ListItem data={data} />
     </div>
   );
 }

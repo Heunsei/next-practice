@@ -15,7 +15,7 @@ interface post {
 export default async function Detail(props: propsType) {
   console.log(props);
   const query = `SELECT * FROM post WHERE id=${props.params.id}`;
-  const data: post[] = await executeQuery(query);
+  const data: post[] = (await executeQuery(query)) as post[];
   console.log(data);
 
   return (

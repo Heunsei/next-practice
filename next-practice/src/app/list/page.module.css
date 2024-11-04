@@ -13,8 +13,8 @@
   margin: 15px;
   text-align: center;
   color: black;
+  transition: 1s all;
 }
-
 
 .card .top {
   padding: 15px;

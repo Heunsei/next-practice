@@ -13,7 +13,7 @@ interface post {
 export default async function Edit(props: propsType) {
   const id = props.params.id;
   const detail_query = `SELECT * FROM post WHERE id=${props.params.id}`;
-  const data: post[] = await executeQuery(detail_query);
+  const data: post[] = (await executeQuery(detail_query)) as post[];
   return (
     <div>
       <form action={`/api/post/edit/${id}`} method="post">
