@@ -3,6 +3,7 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import React from "react";
+import { SessionProvider, useSession } from "next-auth/react";
 
 interface post {
   id: number;
@@ -26,6 +27,7 @@ export default function ListItem(props: propsType) {
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   fetch(`/api/post/delete/${post.id}`, {
                     method: "delete",
+                    // headers : { authoriation : }
                   })
                     .then(() => {
                       const target = e.target as HTMLButtonElement;
