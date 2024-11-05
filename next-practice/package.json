@@ -11,6 +11,8 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.2",
     "@auth/typeorm-adapter": "^2.7.2",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.0",
     "mysql": "^2.18.1",
